@@ -1,4 +1,12 @@
-# ToDoList
+# To do list
+- Angular
+- Bootstrap
+- HTML
+- CSS
+- Google fonts
+
+![to do list](https://user-images.githubusercontent.com/86317658/197366646-04bd6e09-d16a-4b4b-974f-92c9bb134a88.png)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.12.
 
