@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "League Spartan", sans-serif !important;
+  background: #f4f5f9 !important; 
+}

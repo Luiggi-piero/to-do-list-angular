@@ -1,0 +1,84 @@
+<div class="message w-100 text-center p-4" [ngClass]="{ show: wasCreated }">
+  <h4 class="m-0">Tarea agregada con éxito!</h4>
+</div>
+<div class="container my-5">
+  <div class="row pt-5">
+    <h2 class="fw-bold text-center">TO DO LIST</h2>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8 mb-5">
+      <input
+        type="text"
+        (keyup.enter)="addTask()"
+        [(ngModel)]="newTask"
+        class="form-control text-center shadow-none border-0"
+        placeholder="Ingrese una tarea"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="row">
+        <h4 class="col fw-bold">Pendiente</h4>
+        <p class="col text-end count">{{todo.length}}</p>
+      </div>
+      <div
+        cdkDropList
+        #listToDo="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[listInProcess]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let t of todo; let i = index" cdkDrag>
+          {{ t }}
+          <div class="delete" (click)="deleteTask(i, 'todo')">
+            <span class="material-symbols-outlined"> close </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-5 col-lg-4 my-lg-0">
+      <div class="row">
+        <h4 class="col fw-bold">En proceso</h4>
+        <p class="col text-end count">{{inProcess.length}}</p>
+      </div>
+      <div
+        cdkDropList
+        #listInProcess="cdkDropList"
+        [cdkDropListData]="inProcess"
+        [cdkDropListConnectedTo]="[listToDo, listFinished]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let i of inProcess; let in = index" cdkDrag>
+          {{ i }}
+          <div class="delete" (click)="deleteTask(in, 'inProcess')">
+            <span class="material-symbols-outlined"> close </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="row">
+        <h4 class="col fw-bold">Finalizado</h4>
+        <p class="col text-end count">{{finished.length}}</p>
+      </div>
+      <div
+        cdkDropList
+        class="example-list"
+        #listFinished="cdkDropList"
+        [cdkDropListData]="finished"
+        [cdkDropListConnectedTo]="[listInProcess]"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let f of finished; let i = index" cdkDrag>
+          {{ f }}
+          <div class="delete" (click)="deleteTask(i, 'finished')">
+            <span class="material-symbols-outlined"> close </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
